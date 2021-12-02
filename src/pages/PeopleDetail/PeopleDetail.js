@@ -1,11 +1,14 @@
 import React, { useCallback, useEffect, useState } from 'react';
-import { useParams } from 'react-router-dom';
+import { useParams, useNavigate } from 'react-router-dom';
 import Layout from 'components/layout';
 import Loading from 'components/loading';
+import BackCTA from 'components/backCTA';
+import PeopleDescription from 'components/peopleDescription';
 import { SWAPI_URL } from 'utils/constants';
 
 const PeopleDetail = () => {
   let { peopleId } = useParams();
+  const navigate = useNavigate();
   const [people, setPeople] = useState();
 
   const fetchPeople = useCallback(async () => {
@@ -20,7 +23,10 @@ const PeopleDetail = () => {
 
   return people ? (
     <Layout>
-      <div className="super-container">{peopleId}</div>
+      <div className="super-container">
+        <BackCTA onClick={() => navigate(-1)} />
+        <PeopleDescription people={people} />
+      </div>
     </Layout>
   ) : (
     <Loading />
