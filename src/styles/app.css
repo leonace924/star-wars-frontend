@@ -1,0 +1,5 @@
+@import './tailwind.css';
+
+.super-container {
+  @apply container px-5 mx-auto xl:px-8;
+}
