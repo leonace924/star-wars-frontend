@@ -16,6 +16,7 @@
   },
   "scripts": {
     "start": "craco start",
+    "dev": "cross-env TAILWIND_MODE=watch craco start",
     "build": "craco build",
     "test": "craco test",
     "eject": "react-scripts eject",
@@ -42,6 +43,7 @@
   },
   "devDependencies": {
     "autoprefixer": "^9.8.8",
+    "cross-env": "^7.0.3",
     "eslint": "^7.32.0",
     "eslint-plugin-react": "^7.27.1",
     "postcss": "^8.4.4",
