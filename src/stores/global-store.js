@@ -3,7 +3,7 @@ import { devtools } from 'zustand/middleware';
 
 export const useGlobal = create(
   devtools((set) => ({
-    selectedPeople: false,
+    selectedPeople: {},
     setSelectPeople: (selectedPeople) => set({ selectedPeople }),
   })),
 );

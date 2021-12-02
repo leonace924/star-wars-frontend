@@ -1,18 +1,14 @@
 import React from 'react';
 import { useNavigate } from 'react-router-dom';
-import { useGlobal } from 'stores/global-store';
 
 const PeopleCard = ({ people }) => {
   let navigate = useNavigate();
 
-  const setSelectPeople = useGlobal((state) => state.setSelectPeople);
-
-  const slug = people.name.split(' ').join('-').toLowerCase();
-
   const handleRedirect = () => {
-    setSelectPeople(people);
+    let slug = people.url.split('/').at(-2);
     navigate(`/${slug}`);
   };
+
   return (
     <div className="p-6 bg-white rounded-lg shadow-lg">
       <div className="flex items-baseline">

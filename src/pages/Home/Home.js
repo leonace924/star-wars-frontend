@@ -1,9 +1,9 @@
 import React, { useCallback, useEffect, useState } from 'react';
-import { SWAPI_URL } from 'utils/constants';
 import Loading from 'components/loading';
 import PeopleList from 'components/peopleList';
 import Layout from 'components/layout';
 import { getPeopleInfo } from 'utils/getPeopleInfo';
+import { SWAPI_URL } from 'utils/constants';
 
 const HomePage = () => {
   const [data, setData] = useState();
@@ -36,8 +36,6 @@ const HomePage = () => {
   useEffect(() => {
     fetchPeoples();
   }, [fetchPeoples]);
-
-  console.log(data);
 
   return (
     <div className="">

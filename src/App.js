@@ -1,19 +1,19 @@
-import React from "react";
-import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
-// import Header from "components/Header/Header";
-// import Footer from "components/Footer/Footer";
-import HomePage from "pages/Home/Home";
+import React from 'react';
+import { BrowserRouter, Route, Routes } from 'react-router-dom';
+import HomePage from 'pages/Home/Home';
+import PeopleDetail from 'pages/PeopleDetail/PeopleDetail';
 
 const App = () => {
   return (
     <>
-      <Router>
-        {/* <Header /> */}
+      <BrowserRouter>
         <Routes>
-          <Route path="/" element={<HomePage />} />
+          <Route path="/">
+            <Route index element={<HomePage />} />
+            <Route path=":peopleId" element={<PeopleDetail />} />
+          </Route>
         </Routes>
-        {/* <Footer /> */}
-      </Router>
+      </BrowserRouter>
     </>
   );
 };
