@@ -3,6 +3,7 @@
   "version": "0.1.0",
   "private": true,
   "dependencies": {
+    "@craco/craco": "^6.4.2",
     "@testing-library/jest-dom": "^5.11.4",
     "@testing-library/react": "^11.1.0",
     "@testing-library/user-event": "^12.1.10",
@@ -14,13 +15,12 @@
     "web-vitals": "^1.0.1"
   },
   "scripts": {
-    "start": "npm run watch:css && react-scripts start",
-    "build": "npm run watch:css && react-scripts build",
-    "test": "react-scripts test",
+    "start": "craco start",
+    "build": "craco build",
+    "test": "craco test",
     "eject": "react-scripts eject",
     "lint": "eslint --ext .js,.jsx,.ts,.tsx src/",
-    "lint:fix": "eslint --ext .js,.jsx,.ts,.tsx src/ --fix",
-    "watch:css": "postcss src/styles/tailwind.css -o src/styles/app.css"
+    "lint:fix": "eslint --ext .js,.jsx,.ts,.tsx src/ --fix"
   },
   "eslintConfig": {
     "extends": [
@@ -41,11 +41,10 @@
     ]
   },
   "devDependencies": {
-    "autoprefixer": "^10.4.0",
+    "autoprefixer": "^9.8.8",
     "eslint": "^7.32.0",
     "eslint-plugin-react": "^7.27.1",
-    "postcss": "^8.4.3",
-    "postcss-cli": "^9.0.2",
-    "tailwindcss": "^2.2.19"
+    "postcss": "^8.4.4",
+    "tailwindcss": "npm:@tailwindcss/postcss7-compat@^2.2.17"
   }
 }
