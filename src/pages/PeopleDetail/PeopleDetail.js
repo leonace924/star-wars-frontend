@@ -24,7 +24,9 @@ const PeopleDetail = () => {
   return people ? (
     <Layout>
       <div className="super-container">
-        <BackCTA onClick={() => navigate(-1)} />
+        <div className="mb-4 lg:mb-6">
+          <BackCTA onClick={() => navigate(-1)} />
+        </div>
         <PeopleDescription people={people} />
       </div>
     </Layout>
