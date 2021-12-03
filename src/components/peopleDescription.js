@@ -6,7 +6,6 @@ import InfoRow from 'components/infoRow';
 const PeopleDescription = ({ people, movies }) => {
   const [showModal, setShowModal] = useState(false);
 
-  console.log(movies);
   return (
     <>
       <div className="max-w-3xl mx-auto">

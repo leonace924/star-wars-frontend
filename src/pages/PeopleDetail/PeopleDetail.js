@@ -30,8 +30,6 @@ const PeopleDetail = () => {
     setMovies(allMovies);
   }, [people]);
 
-  console.log(movies);
-
   useEffect(() => {
     fetchPeople();
   }, [fetchPeople]);
