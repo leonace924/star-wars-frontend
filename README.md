@@ -2,6 +2,22 @@
 
 A web application built in React JS using data from the Star Wars API https://swapi.dev/
 
+## Project description
+
+This project is to browse the information available on the Star Wars API at https://swapi.dev/
+
+- Pages
+
+1. Homepage
+2. People Detail page
+
+- Features
+
+1. Show peoples from species API, using `Promise.all()`
+2. Search people function, using `debounce` in `lodash`
+3. Switch mode when search query is empty
+4. Added loading component while loading the data
+
 ## Getting Started with Create React App
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
