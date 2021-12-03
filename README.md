@@ -13,10 +13,11 @@ This project is to browse the information available on the Star Wars API at http
 
 - Features
 
-1. Show peoples from species API, using `Promise.all()`
+1. Show peoples from species API, using `Promise.all()` and `useCallback`
 2. Search people function, using `debounce` in `lodash`
 3. Switch mode when search query is empty
 4. Added loading component while loading the data
+5. Show modal for movies poster information when click the movie number on detail page
 
 ## Getting Started with Create React App
 
