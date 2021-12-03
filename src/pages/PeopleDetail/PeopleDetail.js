@@ -10,6 +10,7 @@ const PeopleDetail = () => {
   let { peopleId } = useParams();
   const navigate = useNavigate();
   const [people, setPeople] = useState();
+  const [movies, setMovies] = useState([]);
 
   const fetchPeople = useCallback(async () => {
     let res = await fetch(`${SWAPI_URL}/people/${peopleId}`);
@@ -17,9 +18,26 @@ const PeopleDetail = () => {
     setPeople(res);
   }, [peopleId]);
 
+  const fetchMovies = useCallback(async () => {
+    if (!people || !people?.films) return;
+
+    const getMovies = people.films?.map(async (url) => {
+      const res = await fetch(url);
+      return await res.json();
+    });
+    const allMovies = await Promise.all(getMovies);
+
+    setMovies(allMovies);
+  }, [people]);
+
+  console.log(movies);
+
   useEffect(() => {
     fetchPeople();
   }, [fetchPeople]);
+  useEffect(() => {
+    fetchMovies();
+  }, [fetchMovies]);
 
   return people ? (
     <Layout>
@@ -27,7 +45,7 @@ const PeopleDetail = () => {
         <div className="inline-flex mb-4 lg:mb-6">
           <BackCTA onClick={() => navigate(-1)} />
         </div>
-        <PeopleDescription people={people} />
+        <PeopleDescription people={people} movies={movies} />
       </div>
     </Layout>
   ) : (
