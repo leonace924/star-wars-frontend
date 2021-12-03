@@ -22,7 +22,7 @@ const SearchPeople = () => {
   useEffect(() => {
     if (!data) return;
     setSearchList([]);
-    isNext ? setPeopleAPI(data.next) : setPeopleAPI(data.prev);
+    isNext ? setPeopleAPI(data.next) : setPeopleAPI(data.previous);
   }, [currentPage]);
 
   useEffect(() => {

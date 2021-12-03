@@ -41,10 +41,12 @@ const HomePage = () => {
     setStarPeoples(peoples.map((people, id) => ({ ...people, speciesName: speciesNames[id] })));
   }, [data]);
 
+  console.log(data);
+
   useEffect(() => {
     if (!data) return;
     setStarPeoples([]);
-    isNext ? setSpeciesAPI(data.next) : setSpeciesAPI(data.prev);
+    isNext ? setSpeciesAPI(data.next) : setSpeciesAPI(data.previous);
   }, [currentPage]);
 
   useEffect(() => {
