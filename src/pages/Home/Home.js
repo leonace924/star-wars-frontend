@@ -1,6 +1,7 @@
 import React, { useCallback, useEffect, useState } from 'react';
 import Layout from 'components/layout';
 import Loading from 'components/loading';
+import SearchPeople from 'components/searchPeople';
 import PeopleList from 'components/peopleList';
 import Pagination from 'components/pagination';
 import { useGlobal } from 'stores/global-store';
@@ -10,9 +11,11 @@ import { SWAPI_URL } from 'utils/constants';
 const HomePage = () => {
   const [data, setData] = useState();
   const [speciesAPI, setSpeciesAPI] = useState(`${SWAPI_URL}/species/`);
-  const currentPage = useGlobal((state) => state.currentPage);
+  const [totalPages, setTotalPages] = useState(1);
+  const [currentPage, setCurrentPage] = useState(1);
+
   const isNext = useGlobal((state) => state.isNext);
-  const setTotalPages = useGlobal((state) => state.setTotalPages);
+  const isSearch = useGlobal((state) => state.isSearch);
   const starPeoples = useGlobal((state) => state.starPeoples);
   const setStarPeoples = useGlobal((state) => state.setStarPeoples);
 
@@ -55,9 +58,18 @@ const HomePage = () => {
   return (
     <Layout>
       <div className="py-6 lg:py-10 min-h-[50vh]">
-        {starPeoples.length > 0 ? <PeopleList /> : <Loading />}
+        <div className="mb-6 lg:mb-8">
+          <SearchPeople />
+        </div>
+        {starPeoples.length > 0 ? !isSearch && <PeopleList /> : <Loading />}
       </div>
-      <Pagination />
+      {!isSearch && (
+        <Pagination
+          currentPage={currentPage}
+          setCurrentPage={setCurrentPage}
+          totalPages={totalPages}
+        />
+      )}
     </Layout>
   );
 };

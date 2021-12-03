@@ -11,5 +11,7 @@ export const useGlobal = create(
     setIsNext: (isNext) => set({ isNext }),
     starPeoples: [],
     setStarPeoples: (starPeoples) => set({ starPeoples }),
+    isSearch: true,
+    setIsSearch: (isSearch) => set({ isSearch }),
   })),
 );

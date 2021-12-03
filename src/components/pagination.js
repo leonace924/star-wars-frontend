@@ -2,11 +2,8 @@ import React from 'react';
 import Button from 'components/button';
 import { useGlobal } from 'stores/global-store';
 
-const Pagination = () => {
+const Pagination = ({ totalPages, currentPage, setCurrentPage }) => {
   const setIsNext = useGlobal((state) => state.setIsNext);
-  const totalPages = useGlobal((state) => state.totalPages);
-  const currentPage = useGlobal((state) => state.currentPage);
-  const setCurrentPage = useGlobal((state) => state.setCurrentPage);
 
   const gotoPrev = () => {
     if (currentPage < 2) return;
