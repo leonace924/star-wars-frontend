@@ -2,8 +2,6 @@ import React from 'react';
 import InfoRow from 'components/infoRow';
 
 const PeopleDescription = ({ people }) => {
-  console.log(people);
-
   return (
     <div className="max-w-3xl mx-auto">
       <div className="overflow-hidden bg-white shadow sm:rounded-lg">
@@ -21,6 +19,9 @@ const PeopleDescription = ({ people }) => {
             <InfoRow label="Eye Color" text={people.eye_color} isWhite />
             <InfoRow label="Skin Color" text={people.skin_color} />
             <InfoRow label="Mass" text={people.mass} isWhite />
+            <InfoRow label="Vehicles" text={people.vehicles.length} />
+            <InfoRow label="Starships" text={people.starships.length} isWhite />
+            <InfoRow label="Movies" text={people.films.length} />
           </dl>
         </div>
       </div>

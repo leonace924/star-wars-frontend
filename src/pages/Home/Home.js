@@ -1,33 +1,48 @@
 import React, { useCallback, useEffect, useState } from 'react';
+import Layout from 'components/layout';
 import Loading from 'components/loading';
 import PeopleList from 'components/peopleList';
-import Layout from 'components/layout';
+import Pagination from 'components/pagination';
+import { useGlobal } from 'stores/global-store';
 import { getPeopleInfo } from 'utils/getPeopleInfo';
 import { SWAPI_URL } from 'utils/constants';
 
 const HomePage = () => {
   const [data, setData] = useState();
-  const [peopleList, setPeopleList] = useState([]);
+  const [speciesAPI, setSpeciesAPI] = useState(`${SWAPI_URL}/species/`);
+  const currentPage = useGlobal((state) => state.currentPage);
+  const isNext = useGlobal((state) => state.isNext);
+  const setTotalPages = useGlobal((state) => state.setTotalPages);
+  const starPeoples = useGlobal((state) => state.starPeoples);
+  const setStarPeoples = useGlobal((state) => state.setStarPeoples);
 
   const fetchSpecies = useCallback(async () => {
-    let res = await fetch(`${SWAPI_URL}/species/`);
+    let res = await fetch(speciesAPI);
     res = await res.json();
     setData(res);
-  }, []);
+  }, [speciesAPI]);
 
   const fetchPeoples = useCallback(async () => {
     if (!data || !data?.results) return;
 
-    const { peoplesAPI, speciesNames } = getPeopleInfo(data.results);
+    // Set the total page
+    if (currentPage === 1) setTotalPages(Math.ceil(data.count / 10));
 
+    const { peoplesAPI, speciesNames } = getPeopleInfo(data.results);
     const getHumans = peoplesAPI?.map(async (url) => {
       const res = await fetch(url);
       return await res.json();
     });
     const peoples = await Promise.all(getHumans);
 
-    setPeopleList(peoples.map((people, id) => ({ ...people, speciesName: speciesNames[id] })));
+    setStarPeoples(peoples.map((people, id) => ({ ...people, speciesName: speciesNames[id] })));
   }, [data]);
+
+  useEffect(() => {
+    if (!data) return;
+    setStarPeoples([]);
+    isNext ? setSpeciesAPI(data.next) : setSpeciesAPI(data.prev);
+  }, [currentPage]);
 
   useEffect(() => {
     fetchSpecies();
@@ -38,9 +53,12 @@ const HomePage = () => {
   }, [fetchPeoples]);
 
   return (
-    <div className="">
-      <Layout>{peopleList.length > 0 ? <PeopleList peoples={peopleList} /> : <Loading />}</Layout>
-    </div>
+    <Layout>
+      <div className="py-6 lg:py-10 min-h-[50vh]">
+        {starPeoples.length > 0 ? <PeopleList /> : <Loading />}
+      </div>
+      <Pagination />
+    </Layout>
   );
 };
 

@@ -23,8 +23,8 @@ const PeopleDetail = () => {
 
   return people ? (
     <Layout>
-      <div className="super-container">
-        <div className="mb-4 lg:mb-6">
+      <div className="py-6 super-container lg:py-10">
+        <div className="inline-flex mb-4 lg:mb-6">
           <BackCTA onClick={() => navigate(-1)} />
         </div>
         <PeopleDescription people={people} />
